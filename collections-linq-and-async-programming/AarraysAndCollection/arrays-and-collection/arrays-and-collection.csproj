@@ -6,6 +6,7 @@
     <RootNamespace>arrays_and_collection</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
 </Project>
