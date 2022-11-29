@@ -2,15 +2,31 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-
-
-multiDimentionalArray();
-
+dictionary();
 
 
 void singleDimentionalArray()
 {
+    Customer customer = new Customer();
+    customer.Id = 1234;
+    customer.Name = "Test";
+    Customer[] customers = new Customer[5];
+    customers[0] = customer;
+
+    foreach (var item in customers)
+    {
+        if (item != null)
+        {
+            Console.WriteLine(item.Id + " " + item.Name);
+        }
+        else
+        {
+            Console.WriteLine("customer is null");
+        }
+    }
     //Single-Dimensional Arrays
     Console.WriteLine("Single-Dimensional Arrays");
 
@@ -19,10 +35,10 @@ void singleDimentionalArray()
     
 
     int[] array1 = new int[] { 1, 3, 5, 7, 9, 10 };
-    foreach (var item in array1)
-    {
-        Console.WriteLine(item);
-    }
+    //foreach (var item in array1)
+    //{
+    //    Console.WriteLine(item);
+    //}
 }
 
 void multiDimentionalArray()
@@ -106,17 +122,119 @@ void jaggedArray()
     }
 }
 
+void generics()
+{
+
+    //MyGenericArray<string> myGenericArray = new MyGenericArray<string>(5);
+    //for (int i = 0; i <= 5; i++)
+    //{
+    //    myGenericArray.setItem(i, i.ToString());
+    //}
+
+    //for (int i = 0; i <= 5; i++)
+    //{
+    //    Console.Write(myGenericArray.getItem(i) + " ");
+    //}
+
+    int a, b;
+    char c, d;
+    a = 10;
+    b = 20;
+    c = 'I';
+    d = 'V';
+
+    //display values before swap:
+    Console.WriteLine("Int values before calling swap:");
+    Console.WriteLine("a = {0}, b = {1}", a, b);
+    Console.WriteLine("Char values before calling swap:");
+    Console.WriteLine("c = {0}, d = {1}", c, d);
+
+    //call swap
+    Swap<int>(ref a, ref b);
+    Swap<char>(ref c, ref d);
+
+    //display values after swap:
+    Console.WriteLine("Int values after calling swap:");
+    Console.WriteLine("a = {0}, b = {1}", a, b);
+    Console.WriteLine("Char values after calling swap:");
+    Console.WriteLine("c = {0}, d = {1}", c, d);
+}
+
+void Swap<T>(ref T lhs, ref T rhs)
+{
+    T temp;
+    temp = lhs;
+    lhs = rhs;
+    rhs = temp;
+}
+
 void dictionary()
 {
-   // Dictionary<int, int> dictionary = new Dictionary<int, int>();
-   // dictionary[0] = 1;
-   // dictionary.Add(1, 2);
-   // //dictionary.Remove(1);
-   //// dictionary.Clear();
-   // foreach (var item in dictionary)
-   // {
-   //     Console.WriteLine("Key : {0} and Value : {1}", item.Key, item.Value);
-   // }
+   Dictionary<int, Employee> dictionary = new Dictionary<int, Employee>();
+   //Dictionary<int, Dictionary<int, int>> dictionary2 = new Dictionary<int, Dictionary<int, int>>();
+
+    dictionary.Add(123, new Employee() { Id = 123, Name = "temp" });
+    dictionary.Add(1234, new Employee() { Id = 1234, Name = "temp2" });
+    dictionary.Clear();
+    dictionary.Add(12345, new Employee() { Id = 12345, Name = "temp2" });
+
+    // dictionary[0] = 1;
+    // dictionary.Add(1, 2);
+    // //dictionary.Remove(1);
+    //// dictionary.Clear();
+    // foreach (var item in dictionary)
+    // {
+    //     Console.WriteLine("Key : {0} and Value : {1}", item.Key, item.Value);
+    // }
+    foreach (var item in dictionary)
+    {
+        Console.WriteLine($"key : {item.Key} and value : {item.Value.Name}");
+    }
+}
+
+void list()
+{
+
+    //List<string> names = new List<string>()
+    //{
+    //    "Hello", "World", "c#"
+    //};
+    //names = names.OrderBy(x=>x).ToList();
+    //foreach (var item in names)
+    //{
+    //    Console.WriteLine(item);
+    //}
+}
+
+
+public class MyGenericArray<T>
+{
+    private T[] array;
+
+    public MyGenericArray(int size)
+    {
+        array = new T[size + 1];
+    }
+    public T getItem(int index)
+    {
+        return array[index];
+    }
+    public void setItem(int index, T value)
+    {
+        array[index] = value;
+    }
+}
+
+class Customer
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
 
 
