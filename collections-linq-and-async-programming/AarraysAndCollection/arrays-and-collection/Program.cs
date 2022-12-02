@@ -3,9 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-dictionary();
+list();
 
 
 void singleDimentionalArray()
@@ -194,16 +193,88 @@ void dictionary()
 
 void list()
 {
+    //List<int> numbers = new List<int>() { 1,2,3,4};
+    //numbers.Add(1);
 
+    //List<int> numbers2 = new List<int>() { 56, 85 };
+    //numbers2.AddRange(numbers);
+    //numbers.ForEach(x => { numbers2.Add(x); });
+    //numbers.Sort();
+    //Console.WriteLine(numbers[^3]); //value 3
+    //numbers2.ForEach(x =>
+    //{
+    //    Console.WriteLine(x);
+    //});
+
+    //numbers.Clear();
+
+    //numbers.ForEach(x => {
+    //    Console.WriteLine(x);
+    //});
+
+    //var index = numbers.FindIndex(x => x == 3);
+
+    //Console.WriteLine(index);
+    //foreach (var item in numbers)
+    //{
+    //    Console.WriteLine(item);
+    //}
     //List<string> names = new List<string>()
     //{
     //    "Hello", "World", "c#"
     //};
-    //names = names.OrderBy(x=>x).ToList();
     //foreach (var item in names)
     //{
     //    Console.WriteLine(item);
     //}
+
+    //var numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+    //// Remove odd numbers.
+    //for (var index = numbers.Count - 1; index >= 0; index--)
+    //{
+    //    if (numbers[index] % 2 == 1)
+    //    {
+    //        // Remove the element by specifying
+    //        // the zero-based index in the list.
+    //        numbers.RemoveAt(index);
+    //    }
+    //}
+
+    //// Iterate through the list.
+    //// A lambda expression is placed in the ForEach method
+    //// of the List(T) object.
+    //numbers.ForEach(
+    //    number => Console.Write(number + " "));
+
+    List<Employee> list = new List<Employee>();
+    list.Add(new Employee() { Id = 123, Name = "emp1" });
+    list.Add(new Employee() { Id = 1234, Name = "emp2" });
+    foreach (var emp in list)
+    {
+        Console.WriteLine($"Id : {emp.Id} ; Name : {emp.Name}");
+    }
+
+
+    //var cars = new List<Car>
+    //{
+    //    { new Car() { Name = "car1", Color = "blue", Speed = 20}},
+    //    { new Car() { Name = "car2", Color = "red", Speed = 50}},
+    //    { new Car() { Name = "car3", Color = "green", Speed = 10}},
+    //    { new Car() { Name = "car4", Color = "blue", Speed = 50}},
+    //    { new Car() { Name = "car5", Color = "blue", Speed = 30}},
+    //    { new Car() { Name = "car6", Color = "red", Speed = 60}},
+    //    { new Car() { Name = "car7", Color = "green", Speed = 50}}
+    //};
+
+    //cars.Sort();
+
+    //foreach (Car car in cars)
+    //{
+    //    Console.WriteLine($"{car.Color}  {car.Speed}  {car.Name}");
+    //}
+
+
 }
 
 
@@ -235,6 +306,38 @@ class Employee
 {
     public int Id { get; set; }
     public string Name { get; set; }
+}
+
+class Car : IComparable<Car>
+{
+    public string Name { get; set; }
+    public int Speed { get; set; }
+    public string Color { get; set; }
+
+    public int CompareTo(Car other)
+    {
+        // A call to this method makes a single comparison that is
+        // used for sorting.
+
+        // Determine the relative order of the objects being compared.
+        // Sort by color alphabetically, and then by speed in
+        // descending order.
+
+        // Compare the colors.
+        int compare;
+        compare = String.Compare(this.Color, other.Color, true);
+
+        // If the colors are the same, compare the speeds.
+        if (compare == 0)
+        {
+            compare = this.Speed.CompareTo(other.Speed);
+
+            // Use descending order for speed.
+            compare = -compare;
+        }
+
+        return compare;
+    }
 }
 
 
